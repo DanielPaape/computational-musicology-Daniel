@@ -1,0 +1,104 @@
+---
+title: "Comp-mus-Daniel"
+author: "Daniel Paape"
+date: "2025-02-19"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: "default"
+---
+
+###instal packacges + working with plotly
+***I am creating a plot after which I whave used the plotly command to show it to me***
+```{r setup, include=FALSE}
+# Set a CRAN mirror
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+
+# Install missing packages (only installs if not already installed)
+if (!requireNamespace("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+if (!requireNamespace("plotly", quietly = TRUE)) install.packages("plotly")
+if (!requireNamespace("Cairo", quietly = TRUE)) install.packages("Cairo")
+if (!requireNamespace("flexdashboard", quietly = TRUE)) install.packages("flexdashboard")
+if (!requireNamespace("gitcreds", quietly = TRUE)) install.packages("gitcreds")
+
+# Load necessary libraries
+library(ggplot2)
+library(plotly)
+library(flexdashboard)
+library(gitcreds)
+
+# Remove or comment out this line! (Only run this manually in console)
+# gitcreds::gitcreds_set()
+
+
+# Example dataset
+df <- data.frame(
+  x = rnorm(100),  # 100 random points
+  y = rnorm(100)
+)
+
+# Save ggplot as a variable
+p <- ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "blue") +
+  labs(title = "Interactive Scatter Plot", x = "X-axis", y = "Y-axis")
+
+# Render as an interactive Plotly graphic
+ggplotly(p)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r }
+# Simulated sine wave data
+df <- data.frame(
+  time = 1:100,
+  amplitude = sin(1:100 / 10)
+)
+
+# Save ggplot as a variable
+p <- ggplot(df, aes(x = time, y = amplitude)) +
+  geom_line(color = "blue") +
+  labs(title = "Sine Wave Simulation", x = "Time", y = "Amplitude")
+
+# Render as an interactive Plotly graphic
+ggplotly(p)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+
+# Simulated tempo data
+tempo_data <- data.frame(
+  BPM = c(80, 90, 100, 120, 140),
+  Count = c(5, 10, 15, 7, 3)
+)
+
+tempo_plot <- ggplot(tempo_data, aes(x = BPM, y = Count)) +
+  geom_col(fill = "darkgreen") +
+  labs(title = "Tempo (BPM) Distribution", x = "Beats Per Minute", y = "Frequency")
+
+ggplotly(tempo_plot)
+
+```
+
+```{r}
+
+# Simulated tempo data
+tempo_data <- data.frame(
+  BPM = c(80, 90, 100, 120, 140),
+  Count = c(5, 10, 15, 7, 3)
+)
+
+tempo_plot <- ggplot(tempo_data, aes(x = BPM, y = Count)) +
+  geom_col(fill = "darkgreen") +
+  labs(title = "Tempo (BPM) Distribution", x = "Beats Per Minute", y = "Frequency")
+
+ggplotly(tempo_plot)
+```
